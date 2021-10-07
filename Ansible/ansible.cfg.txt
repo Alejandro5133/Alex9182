@@ -19,7 +19,7 @@
 #plugin_filters_cfg = /etc/ansible/plugin_filters.yml
 #forks          = 5
 #poll_interval  = 15
-#sudo_user      = ansible
+#sudo_user      = root
 #ask_sudo_pass = True
 #ask_pass      = True
 #transport      = smart
@@ -104,7 +104,7 @@
 
 # default user to use for playbooks if user is not specified
 # (/usr/bin/ansible will use current user as default)
-remote_user = sysadmin
+remote_user = azadmin
 
 # logging is off by default unless this path is defined
 # if so defined, consider logrotate
@@ -488,3 +488,5 @@ remote_user = sysadmin
 
 # Set how many context lines to show in diff
 # context = 3
+
+
