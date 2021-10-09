@@ -4,9 +4,9 @@ The files in this repository were used to configure the network depicted below.
 
 https://github.com/Alejandro5133/Alex9182/blob/main/Diagrams/Network_Diagram.png
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook file may be used to install only certain pieces of it, such as Filebeat.
 
-  - _TODO: Enter the playbook file._
+elk-playbook.yml
 
 This document contains the following details:
 - Description of the Topologu
@@ -33,39 +33,41 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+| Jump Box | Gateway  | 10.0.0.4   | Linux            |
+| Web 1    |  server  |  10.0.0.5  | Linux            |
+| Web 2    |  server  |  10.0.0.6  | Linux            |
+| Elk stack|  server  | 10.1.0.5   | Linux            |
 
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- _TODO: Add whitelisted IP addresses_
+Only the JumpBox machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+40.78.91.144
 
-Machines within the network can only be accessed by _____.
-- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_
+Machines within the network can only be accessed by the JumpBox.
+184.103.171.190
 
 A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Jump Box | Yes                 | Home Ip              |
+| Web 1    | No                  | 52.160.69.237        |
+| Web 2    | No                  | 52.160.69.237        |
 
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- _TODO: What is the main advantage of automating configuration with Ansible?_
+- The main advantage is the automation of the configuration.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
 
+- docker.io
+- Install pip3
+- Install Docker python module
+- Increase virtual memory
+- download and launch a docker elk docker_container
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
 ![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
@@ -84,13 +86,15 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the yml file to control nob.
+- Update the host file to includeips addresses on the network.
+- Run the playbook, and navigate to http://[40.121.166.213]:5601/app/kibana to check that the installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
+### Using the Playbook Pt.2
+-Copy the multiple .yml files from Elkserver/Ansible to the jumpbox ansible continaer.
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+-Update the Hosts file to include two sections [elk] [webservers] with each having their respective VM IPs directly under them.
+
+-Also in the Hosts file, update server IPs with Python3.
+
+-Navigate to http://(ElkIPAddress):5601/app/kibana to make sure the elk server is running.
