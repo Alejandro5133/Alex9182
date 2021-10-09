@@ -24,6 +24,9 @@
         name: docker
         state: present
 
+    - name: Increase vitural memory
+      command: sysctl -w vm.max_map_count=262144
+
       # Use sysctl module
     - name: Use more memory
       sysctl:
@@ -49,3 +52,5 @@
       systemd:
         name: docker
         enabled: yes
+
+
