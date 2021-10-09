@@ -2,7 +2,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-https://github.com/Alejandro5133/Alex9182/blob/main/Diagrams/Network_Diagram.png
+![TODO: Update the path with the name of your diagram](https://github.com/Alejandro5133/Alex9182/blob/main/Diagrams/Cloud-Diagram%20(2).png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook file may be used to install only certain pieces of it, such as Filebeat.
 
@@ -70,17 +70,20 @@ The playbook implements the following tasks:
 - download and launch a docker elk docker_container
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+![TODO: Update the path with the name of your screenshot of docker ps output](https://github.com/Alejandro5133/Alex9182/blob/main/Diagrams/docker%20ps%20output.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: List the IP addresses of the machines you are monitoring_
+-Web 1 10.0.0.5
+-Web 2 10.0.0.6
 
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+- Filebeat
+- Metricbeat 
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+-Filebeat system log management and collecting data like Sudo commands, SSH logins, and new users and groups
+-Metricbeat is connected to dvwa and tracks CPU usage, Memory, and Number of Containers.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
